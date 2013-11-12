@@ -32,6 +32,9 @@ $ npm install -g bower
 
     $ npm install
 
+  **TEMPORARY**
+  after npm finishes, go to /app/bower_components/angular/angular.js and comment out line 9097-9101.  Angular recently released a new update that breaks any variables with an '_' in it.  An update is being pushed soon to introduce a way to disable this feature.  Until then, this is a simple fix.
+
   We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
 
     $ grunt
