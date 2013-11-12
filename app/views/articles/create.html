@@ -1,0 +1,23 @@
+<section>
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form-horizontal" data-ng-submit="create()">
+        <div class="form-group">
+          <label class="control-label" for="title">Title</label>
+          <input type="text" class="form-control" data-ng-model="title" id="title" placeholder="Title" required>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="content">Content</label>
+          <div class="controls">
+            <textarea data-ng-model="content" class="form-control" id="content" cols="30" rows="10" placeholder="Content"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="controls">
+            <input type="submit" class="btn">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
