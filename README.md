@@ -9,7 +9,8 @@ YeoMEAN is a web application boilerplate that provides a nice starting point for
 ### Tools Prerequisites
 * NPM - Node.js package manager, should be installed when you install node.js.
 * Bower - Web package manager, installing [Bower](http://bower.io/) is simple when you have npm:
-
+* [Yeoman](http://yeoman.io/) - Code Generation Tool
+* [Angular Generator](https://github.com/yeoman/generator-angular) - Yeoman generators for Angular.
 ```
 $ npm install -g bower
 ```
