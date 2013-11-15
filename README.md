@@ -9,7 +9,8 @@ YeoMEAN is a web application boilerplate that provides a nice starting point for
 ### Tools Prerequisites
 * NPM - Node.js package manager, should be installed when you install node.js.
 * Bower - Web package manager, installing [Bower](http://bower.io/) is simple when you have npm:
-
+* [Yeoman](http://yeoman.io/) - Code Generation Tool
+* [Angular Generator](https://github.com/yeoman/generator-angular) - Yeoman generators for Angular.
 ```
 $ npm install -g bower
 ```
@@ -31,9 +32,6 @@ $ npm install -g bower
   Install dependencies:
 
     $ npm install
-
-  **TEMPORARY**
-  after npm finishes, go to /app/bower_components/angular/angular.js and comment out line 9097-9101.  Angular recently released a new update that breaks any variables with an '_' in it.  An update is being pushed soon to introduce a way to disable this feature.  Until then, this is a simple fix.
 
   We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
 
