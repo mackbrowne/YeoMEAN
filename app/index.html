@@ -54,7 +54,7 @@
               <li><a data-target=".navbar-ex1-collapse" data-toggle="collapse" class="brand" href="/">MEAN - A Modern Stack</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-left">
-              <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
+              <li data-ng-repeat="item in menu" data-ng-show="global.authenticated" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
                 <a data-target=".navbar-ex1-collapse" data-toggle="collapse" href="#/{{item.link}}">{{item.title}}</a>
               </li>
               <li><a data-target=".navbar-ex1-collapse" data-toggle="collapse" href="#services">Services</a></li>
@@ -120,6 +120,7 @@
      <script src="scripts/controllers/users/signin.js"></script>
      <script src="scripts/controllers/users/signup.js"></script>
      <script src="scripts/controllers/main.js"></script>
+     <script src="scripts/controllers/newCtrl1.js"></script>
      <!-- endbuild -->
    </body>
    </html>
