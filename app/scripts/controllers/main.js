@@ -5,5 +5,9 @@ angular.module('yeoMeanApp')
     function($scope, Global) {
       console.log("GLOBAL - " + JSON.stringify(Global));
       $scope.global = Global;
+
+      $scope.dismissError = function(error){
+        Global.errors.splice(error, 1);
+      }
     }
   ]);

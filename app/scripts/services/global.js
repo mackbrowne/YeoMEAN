@@ -5,6 +5,7 @@ angular.module('yeoMeanApp')
   function($resource) {
 
     var _this = this;
+    
     _this._data = $resource('/users/me').get();
 
     return _this._data;

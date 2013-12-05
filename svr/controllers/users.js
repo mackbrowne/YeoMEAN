@@ -55,10 +55,8 @@ exports.create = function(req, res) {
     user.provider = 'local';
     user.save(function(err) {
         if (err) {
-            return res.render('users/signup', {
-                errors: err.errors,
-                user: user
-            });
+            req.flash('error', err)
+            return res.redirect('/#/signup');
         }
         req.logIn(user, function(err) {
             if (err) return next(err);
@@ -83,7 +81,8 @@ exports.show = function(req, res) {
  * Send User
  */
 exports.me = function(req, res) {
-    var user = {authenticated: false};
+    var errors = req.flash('error');
+    var user = {authenticated: false, errors:errors};
     if(req.user){
         user = {user: {name: req.user.name, email: req.user.email}, authenticated:true}
         authenticated: true;
