@@ -55,7 +55,7 @@ exports.create = function(req, res) {
     user.provider = 'local';
     user.save(function(err) {
         if (err) {
-            req.flash('error', err)
+            req.flash('error', 'problem with sign in');
             return res.redirect('/#/signup');
         }
         req.logIn(user, function(err) {
