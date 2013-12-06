@@ -58,9 +58,9 @@ exports.destroy = function(req, res) {
 
     article.remove(function(err) {
         if (err) {
-            res.render('error', {
-                status: 500
-            });
+            req.flash('error', 'error in deleting article');
+            debugger;
+            return res.redirect('/#/articles/'+article._id);
         } else {
             res.jsonp(article);
         }
@@ -80,9 +80,8 @@ exports.show = function(req, res) {
 exports.all = function(req, res) {
     Article.find().sort('-created').populate('user', 'name username').exec(function(err, articles) {
         if (err) {
-            res.render('error', {
-                status: 500
-            });
+            req.flash('error', 'error in getting articles');
+            return res.redirect('/#/articles');
         } else {
             res.jsonp(articles);
         }

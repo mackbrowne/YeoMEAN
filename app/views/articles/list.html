@@ -1,9 +1,10 @@
 <section data-ng-init="find()">
   <ul class="articles unstyled">
     <li data-ng-repeat="article in articles">
-       <div class="col-md-12">
-        <h2><a data-ng-href="#/articles/{{article._id}}">{{article.title}}</a></h2>  
-       </div> 
+      <div class="col-md-12">
+        <h2><a data-ng-href="#/articles/{{article._id}}">{{article.title}}</a>
+      <button type="button" class="close" aria-hidden="true" ng-if="global.authenticated && article.user._id==global.user._id" data-ng-click="remove(article)">&times;</button> </h2> 
+      </div> 
       <div class="col-md-6">{{article.user.name}}</div>
       <div class="col-md-6">{{article.created | date:'medium'}}</div>
       <div class="col-md-12">{{article.content}}</div>

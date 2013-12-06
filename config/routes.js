@@ -46,8 +46,8 @@ module.exports = function(app, passport, auth) {
     app.get('/auth/google', passport.authenticate('google', {
         failureRedirect: '/#/signin',
         scope: [
-            'https://www.googleapis.com/auth/userinfo.profile',
-            'https://www.googleapis.com/auth/userinfo.email'
+        'https://www.googleapis.com/auth/userinfo.profile',
+        'https://www.googleapis.com/auth/userinfo.email'
         ]
     }), users.signin);
 
@@ -68,9 +68,5 @@ module.exports = function(app, passport, auth) {
 
     //Finish with setting up the articleId param
     app.param('articleId', articles.article);
-
-    //Home route
-    //var index = require('../server/controllers/index');
-    //app.get('/', index.render);
 
 };
