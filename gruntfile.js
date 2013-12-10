@@ -75,7 +75,7 @@ module.exports = function(grunt) {
       options: {
         reporter: 'spec'
       },
-      src: ['test/**/*.js']
+      src: ['test/svr/**/*.js']
     },
     env: {
       test: {
@@ -369,6 +369,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-env');
@@ -394,11 +395,11 @@ module.exports = function(grunt) {
   grunt.registerTask('test', [
     'env:test',
     'mochaTest',
-    'clean:server',
-    'concurrent:test',
-    'autoprefixer',
-    'connect:test',
-    'karma'
+    //'clean:server',
+    //'concurrent:test',
+    //'autoprefixer',
+    //'connect:test'
+     'karma'
   ]);
 
   grunt.registerTask('build', [
