@@ -5,6 +5,12 @@ var mongoose = require('mongoose'),
     Article = mongoose.model('Article'),
     _ = require('underscore');
 
+/**
+ * Show an article
+ */
+exports.show = function(req, res) {
+    res.jsonp(req.article);
+};
 
 /**
  * Find article by id
@@ -65,13 +71,6 @@ exports.destroy = function(req, res) {
             res.jsonp(article);
         }
     });
-};
-
-/**
- * Show an article
- */
-exports.show = function(req, res) {
-    res.jsonp(req.article);
 };
 
 /**

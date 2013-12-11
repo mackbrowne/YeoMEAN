@@ -37,7 +37,7 @@ describe('<Unit Test>', function() {
             it('should be able to save without problems', function(done) {
                 return article.save(function(err) {
                     should.not.exist(err);
-                    done();
+                    done(err);
                 });
             });
 

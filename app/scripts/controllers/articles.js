@@ -13,14 +13,13 @@ angular.module('yeoMeanApp')
         article.$save(function(response) {
          $location.path('articles/' + response._id );
         });
-
+        
         this.title = '';
         this.content = '';
       };
 
       $scope.remove = function(article) {
         article.$remove();
-
         for (var i in $scope.articles) {
           if ($scope.articles[i] == article) {
             $scope.articles.splice(i, 1);
