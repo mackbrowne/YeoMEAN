@@ -5,7 +5,7 @@ angular.module('yeoMeanApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize'
-  ])
+])
 .config(function ($routeProvider) {
   $routeProvider
   .when('/articles', {

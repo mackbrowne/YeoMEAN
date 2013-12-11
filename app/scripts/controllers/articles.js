@@ -11,7 +11,7 @@ angular.module('yeoMeanApp')
           content: this.content
         });
         article.$save(function(response) {
-         $location.path('articles/' + response._id );
+          $location.path('articles/' + response._id );
         });
         
         this.title = '';
@@ -21,7 +21,7 @@ angular.module('yeoMeanApp')
       $scope.remove = function(article) {
         article.$remove();
         for (var i in $scope.articles) {
-          if ($scope.articles[i] == article) {
+          if ($scope.articles[i] === article) {
             $scope.articles.splice(i, 1);
           }
         }
@@ -35,7 +35,7 @@ angular.module('yeoMeanApp')
         article.updated.push(new Date().getTime());
 
         article.$update(function() {
-         $location.path('articles/' + article._id);
+          $location.path('articles/' + article._id);
         });
       };
 
