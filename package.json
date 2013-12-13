@@ -80,6 +80,7 @@
     "grunt-karma": "~0.6.2",
     "protractor": "latest",
     "grunt-protractor-runner": "~0.2.0",
-    "grunt-express-server": "~0.4.9"
+    "grunt-express-server": "~0.4.9",
+    "grunt-shell": "~0.6.1"
   }
 }

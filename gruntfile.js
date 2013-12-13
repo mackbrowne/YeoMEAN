@@ -381,12 +381,17 @@ module.exports = function(grunt) {
     express: {
       options: {
         // Override defaults here
-        port: undefined;
       },
       test: {
         options: {
-          script: 'server.js'
+          script: 'server.js',
+          port: 3001
         }
+      }
+    },
+    shell: {
+      cleanDB: {
+        command: 'node utils/clearTestDB.js'
       }
     }
   });
@@ -402,6 +407,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-preprocess');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-express-server');
+  grunt.loadNpmTasks('grunt-shell');
+
 
   //Making grunt default to force in order not to break the project.
   grunt.option('force', true);
@@ -419,6 +426,8 @@ module.exports = function(grunt) {
   //     'watch'
   //   ]);
   // });
+  // 
+  
 
   grunt.registerTask('test-karma', [
     'env:test',
@@ -443,17 +452,18 @@ module.exports = function(grunt) {
     'express:test',
     //'concurrent:test',
     'protractor',
-    'express:test:stop'
+    'express:test:stop',
+    'shell:cleanDB'
     //'concurrent:test',
     //'autoprefixer',
     //'connect:test'
   ]);
 
   grunt.registerTask('test', [
-    'env:test',
-    'mochaTest',
-    'karma',
-    'protractor'
+    'test-mocha',
+    'test-karma',
+    'protractor',
+    'shell:cleanDB'
     //'clean:server',
     //'concurrent:test',
     //'autoprefixer',
