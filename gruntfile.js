@@ -338,6 +338,22 @@ module.exports = function(grunt) {
         singleRun: true
       }
     },
+    protractor: {
+      options: {
+        configFile: "node_modules/protractor/referenceConf.js", // Default config file
+        keepAlive: true, // If false, the grunt process stops when the test fails.
+        noColor: false, // If true, protractor will not use colors in its output.
+        args: {
+          // Arguments passed to the command
+        }
+      },
+      your_target: {
+        options: {
+          configFile: "protractor.conf.js", // Target-specific config file
+          args: {} // Target-specific arguments
+        }
+      },
+    },
     cdnify: {
       dist: {
         html: ['<%= yeoman.dist %>/*.html']
@@ -361,9 +377,19 @@ module.exports = function(grunt) {
           ]
         }
       }
+    },
+    express: {
+      options: {
+        // Override defaults here
+        port: undefined;
+      },
+      test: {
+        options: {
+          script: 'server.js'
+        }
+      }
     }
   });
-
 
   //Load NPM tasks 
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -374,6 +400,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-env');
   grunt.loadNpmTasks('grunt-preprocess');
+  grunt.loadNpmTasks('grunt-protractor-runner');
+  grunt.loadNpmTasks('grunt-express-server');
 
   //Making grunt default to force in order not to break the project.
   grunt.option('force', true);
@@ -392,14 +420,44 @@ module.exports = function(grunt) {
   //   ]);
   // });
 
-  grunt.registerTask('test', [
+  grunt.registerTask('test-karma', [
     'env:test',
-    'mochaTest',
     //'clean:server',
     //'concurrent:test',
     //'autoprefixer',
     //'connect:test'
     'karma'
+  ]);
+
+  grunt.registerTask('test-mocha', [
+    'env:test',
+    'mochaTest'
+    //'clean:server',
+    //'concurrent:test',
+    //'autoprefixer',
+    //'connect:test'
+  ]);
+
+  grunt.registerTask('test-protractor', [
+    'env:test',
+    'express:test',
+    //'concurrent:test',
+    'protractor',
+    'express:test:stop'
+    //'concurrent:test',
+    //'autoprefixer',
+    //'connect:test'
+  ]);
+
+  grunt.registerTask('test', [
+    'env:test',
+    'mochaTest',
+    'karma',
+    'protractor'
+    //'clean:server',
+    //'concurrent:test',
+    //'autoprefixer',
+    //'connect:test'
   ]);
 
   grunt.registerTask('build', [

@@ -77,6 +77,9 @@
     "karma-phantomjs-launcher": "~0.1.1",
     "karma": "~0.10.7",
     "karma-mocha": "~0.1.1",
-    "grunt-karma": "~0.6.2"
+    "grunt-karma": "~0.6.2",
+    "protractor": "latest",
+    "grunt-protractor-runner": "~0.2.0",
+    "grunt-express-server": "~0.4.9"
   }
 }
