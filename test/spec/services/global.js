@@ -3,7 +3,7 @@
 describe('Service: Global', function () {
 
   // load the service's module
-  beforeEach(module('YeomeanApp'));
+  beforeEach(module('yeoMeanApp'));
 
   // instantiate service
   var Global;

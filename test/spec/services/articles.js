@@ -3,7 +3,7 @@
 describe('Service: Articles', function () {
 
   // load the service's module
-  beforeEach(module('YeomeanApp'));
+  beforeEach(module('yeoMeanApp'));
 
   // instantiate service
   var Articles;

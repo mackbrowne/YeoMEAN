@@ -12,11 +12,17 @@ describe('Controller: MainCtrl', function () {
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
-      $scope: scope
+      $scope: scope,
+      Global: {errors: ["error1", "error2"]}
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  it('should dismiss errors', function(){
+    scope.dismissError("error1");
+    expect(scope.global.errors.length).toBe(1);
+    expect(scope.global.errors[0]).toBe("error2");
+    scope.dismissError("error2");
+    expect(scope.global.errors.length).toBe(0);
   });
+
 });

@@ -1,5 +1,5 @@
 // myTest.js
-describe('angularjs homepage', function() {
+describe('signup', function() {
   it('should greet the named user', function() {
     browser.get('http://localhost:3001');
 
@@ -10,7 +10,9 @@ describe('angularjs homepage', function() {
     element(by.id('username')).sendKeys('testusr1');
     element(by.id('password')).sendKeys('testusr1');
     element(by.className('btn-default')).click();
+    
     expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/#/')
+    
     //var greeting = element(by.binding('yourName'));
 
   //  expect(greeting.getText()).toEqual('Hello Julie!');

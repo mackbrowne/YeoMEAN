@@ -14,6 +14,7 @@ files : [
 // JASMINE_ADAPTER,
 // MOCHA,
 // MOCHA_ADAPTER,
+'app/bower_components/jquery/jquery.js',
 'app/bower_components/angular/angular.js',
 'app/bower_components/angular-route/angular-route.js',
 'app/bower_components/angular-resource/angular-resource.js',
@@ -24,7 +25,7 @@ files : [
 'app/scripts/services/*.js',
 'app/scripts/controllers/*.js',
 'app/bower_components/angular-mocks/angular-mocks.js',
-'test/spec/controllers/articles.js'
+'test/spec/**/*.js'
  // 'test/spec/services/*.js'
  ],
 

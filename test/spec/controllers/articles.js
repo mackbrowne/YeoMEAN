@@ -14,20 +14,79 @@ describe('Controller: ArticlesCtrl', function () {
     ArticlesCtrl = $controller('ArticlesCtrl', {
       $scope: scope,
       $routeParams: null,
-      $location: null,
+      $location: {
+        path: function(location){
+
+        }
+      },
       Global: null,
-      Articles: Articles
+      Articles: function(){
+        return {
+          $save: function(){
+
+          }
+        }
+      }
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function (done) {
-    scope.find(done);
+  it('should handle creating a new article', function(){
+    scope.title = 'sampleTitle';
+    expect(scope.title).toBe('sampleTitle');
+    scope.content = 'this is a body';
+    expect(scope.content).toBe('this is a body');
+
+    scope.create();
+
+    expect(scope.title).toBe('');
+    expect(scope.content).toBe('');
   });
 
-  it('should fail', function(){
-    scope.find(function(articles, err){
-      expect(articles.length).toBe(0);
-    });
+  it('should handle removing a new article', function(){
+    scope.title = 'sampleTitle';
+    expect(scope.title).toBe('sampleTitle');
+    scope.content = 'this is a body';
+    expect(scope.content).toBe('this is a body');
+
+    scope.create();
+
+    expect(scope.title).toBe('');
+    expect(scope.content).toBe('');
   });
+
+      // $scope.remove = function(article) {
+      //   article.$remove();
+      //   for (var i in $scope.articles) {
+      //     if ($scope.articles[i] === article) {
+      //       $scope.articles.splice(i, 1);
+      //     }
+      //   }
+      // };
+
+      // $scope.update = function() {
+      //   var article = $scope.article;
+      //   if (!article.updated) {
+      //     article.updated = [];
+      //   }
+      //   article.updated.push(new Date().getTime());
+
+      //   article.$update(function() {
+      //     $location.path('articles/' + article._id);
+      //   });
+      // };
+
+      // $scope.find = function() {
+      //   Articles.query(function(articles) {
+      //     $scope.articles = articles;
+      //   });
+      // };
+
+      // $scope.findOne = function() {
+      //   Articles.get({
+      //     articleId: $routeParams.articleId
+      //   }, function(article) {
+      //     $scope.article = article;
+      //   });
+      // };
   
 });
