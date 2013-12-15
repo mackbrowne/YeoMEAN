@@ -17,12 +17,6 @@ module.exports = function(grunt) {
       dist: 'dist'
     },
     watch: {
-      // jade: {
-      //   files: ['server/views/**'],
-      //   options: {
-      //     livereload: true
-      //   }
-      // },
       coffee: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
         tasks: ['coffee:dist']
@@ -314,8 +308,8 @@ module.exports = function(grunt) {
         logConcurrentOutput: true
       },
       server: [
-        'coffee:dist',
-        'compass:server',
+      //  'coffee:dist',
+      //  'compass:server',
         'copy:styles'
       ],
       test: [
@@ -340,16 +334,16 @@ module.exports = function(grunt) {
     },
     protractor: {
       options: {
-        configFile: "node_modules/protractor/referenceConf.js", // Default config file
+        configFile: 'node_modules/protractor/referenceConf.js', // Default config file
         keepAlive: true, // If false, the grunt process stops when the test fails.
         noColor: false, // If true, protractor will not use colors in its output.
         args: {
           // Arguments passed to the command
         }
       },
-      your_target: {
+      target: {
         options: {
-          configFile: "protractor.conf.js", // Target-specific config file
+          configFile: 'protractor.conf.js', // Target-specific config file
           args: {} // Target-specific arguments
         }
       },
@@ -392,6 +386,12 @@ module.exports = function(grunt) {
     shell: {
       cleanDB: {
         command: 'node utils/clearTestDB.js'
+      },
+      startProtractor: {
+        command: './node_modules/protractor/bin/webdriver-manager start'
+      },
+      updateProtractor: {
+        command: './node_modules/protractor/bin/webdriver-manager update --standalone'
       }
     }
   });
@@ -413,22 +413,24 @@ module.exports = function(grunt) {
   //Making grunt default to force in order not to break the project.
   grunt.option('force', true);
 
-  // grunt.registerTask('server', function (target) {
-  //   if (target === 'dist') {
-  //     return grunt.task.run(['build', 'connect:dist:keepalive']);
-  //   }
+  grunt.registerTask('server', function (target) {
+    if (target === 'dist') {
+      return grunt.task.run(['build', 'connect:dist:keepalive']);
+    }
 
-  //   grunt.task.run([
-  //     'clean:server',
-  //     'concurrent:server',
-  //     'autoprefixer',
-  //     'connect:livereload',
-  //     'watch'
-  //   ]);
-  // });
-  // 
+    grunt.task.run([
+      'clean:server',
+      'concurrent:server',
+      'autoprefixer',
+      'connect:livereload',
+      'watch'
+    ]);
+  });
   
-
+  grunt.registerTask('testServer', [
+    'shell:startProtractor'
+  ]);
+  
   grunt.registerTask('test-karma', [
     'env:test',
     //'clean:server',
@@ -451,6 +453,7 @@ module.exports = function(grunt) {
     'env:test',
     'express:test',
     //'concurrent:test',
+    //'shell:startProtractor',
     'protractor',
     'express:test:stop',
     'shell:cleanDB'
@@ -487,9 +490,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', [
     'jshint',
-    'concurrent',
     'test',
-    'build'
+    'concurrent'
   ]);
 
   grunt.registerTask('phonegap', [

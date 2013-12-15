@@ -9,25 +9,16 @@ describe('Controller: ArticlesCtrl', function () {
   scope;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope, Articles) {
+  beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
     ArticlesCtrl = $controller('ArticlesCtrl', {
-      $scope: scope,
-      $routeParams: null,
-      $location: {
-        path: function(location){
-
-        }
-      },
-      Global: null,
-      Articles: function(){
-        return {
-          $save: function(){
-
-          }
-        }
-      }
+      $scope: scope
     });
+
+    scope.articles = [
+      {title: 'initialTitle', content:'initialBody', $remove: function(){ }},
+      {title: 'initialTitle1', content:'initialBody1', $update: function(){ }}
+    ];
   }));
 
   it('should handle creating a new article', function(){
@@ -43,50 +34,56 @@ describe('Controller: ArticlesCtrl', function () {
   });
 
   it('should handle removing a new article', function(){
-    scope.title = 'sampleTitle';
-    expect(scope.title).toBe('sampleTitle');
-    scope.content = 'this is a body';
-    expect(scope.content).toBe('this is a body');
+    expect(scope.articles.length).toBe(2);
 
-    scope.create();
+    scope.remove(scope.articles[0]);
 
-    expect(scope.title).toBe('');
-    expect(scope.content).toBe('');
+    expect(scope.articles.length).toBe(1);
   });
 
-      // $scope.remove = function(article) {
-      //   article.$remove();
-      //   for (var i in $scope.articles) {
-      //     if ($scope.articles[i] === article) {
-      //       $scope.articles.splice(i, 1);
-      //     }
-      //   }
-      // };
+  it('should handle updating an article', function(){
+    scope.article = scope.articles[1];
 
-      // $scope.update = function() {
-      //   var article = $scope.article;
-      //   if (!article.updated) {
-      //     article.updated = [];
-      //   }
-      //   article.updated.push(new Date().getTime());
+    scope.update();
 
-      //   article.$update(function() {
-      //     $location.path('articles/' + article._id);
-      //   });
-      // };
+    expect(scope.article.updated.length).toBe(1);
+  });
 
-      // $scope.find = function() {
-      //   Articles.query(function(articles) {
-      //     $scope.articles = articles;
-      //   });
-      // };
+  it('should perform a find', function(){
+    inject(function ($controller, $rootScope) {
+      scope = $rootScope.$new();
+      ArticlesCtrl = $controller('ArticlesCtrl', {
+        $scope: scope,
+        Articles: {
+          query: function(callback){
+            return callback([{title: 'queryTitle', content:'queryBody'}]);
+          }
+        }
+      });
+    });
 
-      // $scope.findOne = function() {
-      //   Articles.get({
-      //     articleId: $routeParams.articleId
-      //   }, function(article) {
-      //     $scope.article = article;
-      //   });
-      // };
-  
+    scope.find();
+
+    expect(scope.articles.length).toBe(1);
+    expect(scope.articles[0].title).toBe('queryTitle');
+  });
+
+  it('should perform a findOne', function(){
+    inject(function ($controller, $rootScope) {
+      scope = $rootScope.$new();
+      ArticlesCtrl = $controller('ArticlesCtrl', {
+        $scope: scope,
+        Articles: {
+          get: function(article, callback){
+            return callback({title: 'getTitle', content:'getBody'});
+          }
+        }
+      });
+    });
+
+    scope.findOne();
+
+    expect(scope.article.title).toBe('getTitle');
+  });
+
 });

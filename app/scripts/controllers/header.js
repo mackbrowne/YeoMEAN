@@ -13,7 +13,7 @@ angular.module('yeoMeanApp').controller('HeaderCtrl', ['$scope', 'Global', funct
 
   $scope.toggleHeader =  function() {
     // close dropdown
-    angular.element(".navbar-collapse").removeClass("in").addClass("collapse");
+    angular.element('.navbar-collapse').removeClass('in').addClass('collapse');
   };
 
 }]);
