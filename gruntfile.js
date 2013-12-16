@@ -455,14 +455,15 @@ module.exports = function(grunt) {
     //'concurrent:test',
     //'shell:startProtractor',
     'protractor',
-    'express:test:stop',
-    'shell:cleanDB'
+    'shell:cleanDB',
+    'express:test:stop'
     //'concurrent:test',
     //'autoprefixer',
     //'connect:test'
   ]);
 
   grunt.registerTask('test', [
+    'env:test',
     'test-mocha',
     'test-karma',
     'protractor',
