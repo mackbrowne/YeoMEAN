@@ -81,6 +81,8 @@
     "protractor": "latest",
     "grunt-protractor-runner": "~0.2.0",
     "grunt-express-server": "~0.4.9",
-    "grunt-shell": "~0.6.1"
+    "grunt-shell": "~0.6.1",
+    "karma-coverage": "~0.1.4",
+    "istanbul": "~0.1.46"
   }
 }

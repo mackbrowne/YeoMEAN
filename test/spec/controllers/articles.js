@@ -6,7 +6,7 @@ describe('Controller: ArticlesCtrl', function () {
   beforeEach(module('yeoMeanApp'));
 
   var ArticlesCtrl,
-  scope;
+  scope, location;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
@@ -31,14 +31,6 @@ describe('Controller: ArticlesCtrl', function () {
 
     expect(scope.title).toBe('');
     expect(scope.content).toBe('');
-  });
-
-  it('should handle removing a new article', function(){
-    expect(scope.articles.length).toBe(2);
-
-    scope.remove(scope.articles[0]);
-
-    expect(scope.articles.length).toBe(1);
   });
 
   it('should handle updating an article', function(){

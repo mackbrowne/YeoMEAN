@@ -16,7 +16,7 @@ angular.module('yeoMeanApp', [
     templateUrl: 'views/articles/create.html',
     controller: 'ArticlesCtrl'
   })
-  .when('/articles/edit', {
+  .when('/articles/:articleId/edit', {
     templateUrl: 'views/articles/edit.html',
     controller: 'ArticlesCtrl'
   })
